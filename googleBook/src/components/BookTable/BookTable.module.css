@@ -1,0 +1,15 @@
+.book-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.book-table th,
+.book-table td {
+  border: 1px solid rgb(85, 26, 70);
+  padding: 8px;
+  text-align: left;
+}
+
+.book-table th {
+  background-color: #3065d6;
+}

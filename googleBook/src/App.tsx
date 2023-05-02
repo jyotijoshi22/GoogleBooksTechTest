@@ -1,13 +1,12 @@
-//import { useState } from "react";
-//import reactLogo from "./assets/react.svg";
-
 import "./App.css";
-import Books from "./components/Books/books";
+import Books from "./components/Books/Books";
 
 function App() {
   return (
     <div>
-      <h1>Flower's related book</h1>
+      <h1 style={{ fontSize: "24px", color: "green", fontWeight: "bold" }}>
+        FLOWER'S BOOK
+      </h1>
       <Books />
     </div>
   );

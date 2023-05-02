@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from "react";
 import BookTable from "../BookTable/BookTable";
 
-interface Book {
-  id: string;
+type Book = {
   title: string;
+  subtitle: string;
   authors: string[];
+  image: string;
   publishedDate: string;
-}
+  description: string;
+};
 
 const Books: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await fetch(
-        "https://www.googleapis.com/books/v1/volumes?q=flowers"
+    fetch("https://www.googleapis.com/books/v1/volumes?q=flowers")
+      .then((response) => response.json())
+      .then((data) =>
+        setBooks(
+          data.items.map((item: any) => ({
+            title: item.volumeInfo.title,
+            subtitle: item.volumeInfo.subtitle,
+            authors: item.volumeInfo.authors,
+            image: item.volumeInfo.imageLinks?.thumbnail,
+            description: item.volumeInfo.description,
+            publishedDate: item.volumeInfo.publishedDate,
+          }))
+        )
       );
-      const data = await response.json();
-      const bookItems = data.items.map((item: any) => ({
-        id: item.id,
-        title: item.volumeInfo.title,
-        authors: item.volumeInfo.authors ?? [],
-        publishedDate: item.volumeInfo.publishedDate,
-      }));
-      setBooks(bookItems);
-    };
-    fetchBooks();
   }, []);
 
   return (
