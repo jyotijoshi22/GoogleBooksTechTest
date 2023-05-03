@@ -1,6 +1,7 @@
 .book-table {
   border-collapse: collapse;
   width: 100%;
+  background-color: #f5f5f5;
 }
 
 .book-table th,
